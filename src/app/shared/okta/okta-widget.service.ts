@@ -86,17 +86,15 @@ export class OktaWidgetService {
     oktaSignIn.on('afterRender', function (context) {
       if (context.controller == 'password-reset-email-sent') {
 
-        document.getElementById('okta-login-container').remove();
-        // let element: HTMLElement = document.getElementsByClassName('js-go-back')[0] as HTMLElement;
-        //   while (element[0]) {
-        //     element[0].parentNode.removeChild(element[0]);
-        // }
+        // document.getElementById('okta-login-container').remove();
+        // let element: HTMLElement = document.getElementsByClassName('button button-primary button-wide link-button')[0] as HTMLElement;
 
-        // let element: HTMLElement = document.getElementById('okta-signin-container')[0] as HTMLElement;
+        let element: HTMLElement = document.getElementsByClassName('button button-primary button-wide link-button')[0] as HTMLElement;
+        
+        element.setAttribute('href','https://www.yahoo.co.jp');
+        element.setAttribute('target', '_blank');
 
-        //   while (element[0]) {
-        //     element[0].parentNode.removeChild(element[0]);
-        // }
+
 
         return;
 

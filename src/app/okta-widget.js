@@ -27,15 +27,15 @@ function OktaWidget() {
             callRecovery: false,
 
         },
-        baseUrl: "https://kent-nagao-test.oktapreview.com",
-        redirectUri: "https://192.168.1.210:4200/siw-custom-need-help/",
-        clientId: "0oa1wg94qd3UxPGQ31d7",   //CLIENT ID GOES HERE
+        baseUrl: "https://kent-nagao-oie.oktapreview.com",
+        redirectUri: "https://192.168.1.100:4200/ciam-widget-uc-test/start/",
+        clientId: "0oa49a180zvl724a30x7",   //CLIENT ID GOES HERE
         authParams: {
-            issuer: 'https://kent-nagao-test.oktapreview.com/oauth2/aus14xmr8soQUuZda1d7',
-            responseType: ['token', 'id_token'],
-            Pkce: true,
-            responseMode: 'fragment',
-            pkce: 'true',
+            issuer: 'https://kent-nagao-oie.oktapreview.com/oauth2/default/',
+            // responseType: ['token', 'id_token'],
+            // Pkce: true,
+            // responseMode: 'fragment',
+            // pkce: 'true',
             scope: ['openid', 'email', 'profile']
         },
 
