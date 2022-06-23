@@ -5,13 +5,15 @@ import { BehaviorSubject } from "rxjs";
 import OktaSignIn from '@okta/okta-signin-widget';
 import '@okta/okta-signin-widget/dist/css/okta-sign-in.min.css';
 import { OktaConfigService } from './okta-config.service';
-
+import { Component, ViewChild, ElementRef } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class OktaWidgetService {
+
+  // @ViewChild('button-primary ') btnPrimary: ElementRef;
 
 
   private authClient = new OktaAuth({
@@ -89,11 +91,30 @@ export class OktaWidgetService {
         // document.getElementById('okta-login-container').remove();
         // let element: HTMLElement = document.getElementsByClassName('button button-primary button-wide link-button')[0] as HTMLElement;
 
-        let element: HTMLElement = document.getElementsByClassName('button button-primary button-wide link-button')[0] as HTMLElement;
-        
-        element.setAttribute('href','https://www.yahoo.co.jp');
-        element.setAttribute('target', '_blank');
+        // let element: HTMLElement = document.getElementsByClassName('button button-primary button-wide link-button')[0] as HTMLElement;
 
+
+        let element: HTMLElement = document.getElementsByClassName('button-primary button-wide')[0] as HTMLElement;
+        // element.remove();
+        // element.setAttribute('href',' ');
+        
+        element.setAttribute('target', '_blank');
+        element.setAttribute('onclick', 'GoToURL()');
+        // addElement()
+
+        // function addElement() {
+          // var button = document.createElement('input');
+          // button.setAttribute('type', 'submit');
+          // button.setAttribute('ID', 'btnLink');
+          // button.setAttribute('value', 'Click me!');
+          // button.setAttribute('onclick', 'GoToURL()');
+          // button.setAttribute('form', 'myform');
+          // document.body.appendChild(button);
+          // button.setAttribute("class", "btn btn-primary");
+        // }
+            
+        
+        
 
 
         return;
@@ -195,6 +216,9 @@ export class OktaWidgetService {
     oktaSignIn.remove();
   }
 
-
+  GoToURL() {
+    console.log("Button was clicked, redirecting you");
+    window.location.replace('https://www.example.com');
+  }
 
 }
