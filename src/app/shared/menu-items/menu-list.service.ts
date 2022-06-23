@@ -12,6 +12,51 @@ export class MenuListService {
     private OktaConfigService: OktaConfigService,
   ) { }
 
+  widgetUC = [
+    {
+      tooltipOptions: {
+        tooltipLabel: "Password Reset",
+        tooltipPosition: "top",
+      },
+      icon: "pi pi-key",
+      // style: 'font-size: 2rem;',
+      routerLink: '/pw-reset'
+    },
+    // {
+    //   label: 'ログアウト',
+    //   icon: "pi pi-sign-out",
+    //   style:'font-size: 1.5rem;',
+    //   command: () => {
+    //     this.Logout();
+    //   }
+    // },
+    // {
+    //   label: 'Facebook',
+    //   icon: "pi pi-fw pi-facebook",
+    //   style:'font-size: 0.7rem',
+    //   url: 'https://www.facebook.com/Okta/',
+    // },
+    // {
+    //   label: 'LinkedIn',
+    //   icon: "pi pi-fw pi-linkedin",
+    //   style:'font-size: 0.7rem',
+    //   url: 'https://www.linkedin.com/company/okta-inc-/',
+    // },
+    // {
+    //   label: 'Youtube',
+    //   icon: "pi pi-fw pi-youtube",
+    //   style:'font-size: 0.7rem',
+    //   url: 'https://www.youtube.com/OktaInc',
+    // },
+    // {
+    //   label: 'Twitter',
+    //   icon: "pi pi-fw pi-twitter",
+    //   style:'font-size: 0.7rem',
+    //   url: 'https://twitter.com/okta_japan',
+    // },
+    
+  ];
+
 
   ItemsMenu = [
     {

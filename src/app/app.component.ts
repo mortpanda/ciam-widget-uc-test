@@ -8,7 +8,7 @@ import { PrimeNGConfig } from 'primeng/api';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'okta-japan-template-v5-primeui';
+  // title = 'okta-japan-template-v5-primeui';
 
   constructor(
     private primengConfig: PrimeNGConfig,
