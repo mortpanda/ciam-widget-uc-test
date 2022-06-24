@@ -14,20 +14,21 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
   encapsulation: ViewEncapsulation.None
 })
 export class PwResetWidgetComponent implements OnInit {
-  
+
   constructor(
     private OktaWidgetService: OktaWidgetService,
     private OktaConfigService: OktaConfigService,
   ) { }
 
   async ngOnInit() {
-      await this.OktaWidgetService.CloseWidget();
-      await this.OktaWidgetService.widgetDo(this.OktaConfigService.strRedirectURL,"password-reset-email-sent",false, "#00297A");
+    await this.OktaWidgetService.CloseWidget();
+    await this.OktaWidgetService.CloseWidget();
+    await this.OktaWidgetService.widgetDoReset(this.OktaConfigService.strRedirectURL, false, "#00297A");
 
-    
+
 
   }
 
 
-   
+
 }

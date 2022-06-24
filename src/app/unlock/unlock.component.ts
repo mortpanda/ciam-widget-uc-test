@@ -19,12 +19,13 @@ export class UnlockComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
-      await this.OktaWidgetService.CloseWidget();
-      await this.OktaWidgetService.widgetDo(this.OktaConfigService.strRedirectURL,"account-unlock-email-sent",true,"#3C2B57");
+    await this.OktaWidgetService.CloseWidget();
+    await this.OktaWidgetService.CloseWidget();
+    await this.OktaWidgetService.widgetDoUnlock(this.OktaConfigService.strRedirectURL, true, "#3C2B57");
 
-  
+
   }
 
 
-   
+
 }
