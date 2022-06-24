@@ -5,16 +5,14 @@ import { ViewEncapsulation } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
-
-
 @Component({
-  selector: 'app-pw-reset-widget',
-  templateUrl: './pw-reset-widget.component.html',
-  styleUrls: ['./pw-reset-widget.component.scss'],
+  selector: 'app-unlock',
+  templateUrl: './unlock.component.html',
+  styleUrls: ['./unlock.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class PwResetWidgetComponent implements OnInit {
-  
+export class UnlockComponent implements OnInit {
+
   constructor(
     private OktaWidgetService: OktaWidgetService,
     private OktaConfigService: OktaConfigService,
@@ -22,10 +20,9 @@ export class PwResetWidgetComponent implements OnInit {
 
   async ngOnInit() {
       await this.OktaWidgetService.CloseWidget();
-      await this.OktaWidgetService.widgetDo(this.OktaConfigService.strRedirectURL,"password-reset-email-sent",false, "#00297A");
+      await this.OktaWidgetService.widgetDo(this.OktaConfigService.strRedirectURL,"account-unlock-email-sent",true,"#3C2B57");
 
-    
-
+  
   }
 
 

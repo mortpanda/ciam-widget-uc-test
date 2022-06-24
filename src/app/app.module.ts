@@ -21,6 +21,7 @@ import { StartComponent } from './start/start.component';
 import { PwResetWidgetComponent } from './pw-reset-widget/pw-reset-widget.component';
 import { SpeedDialModule } from 'primeng/speeddial';
 import { FormsModule } from '@angular/forms';
+import { UnlockComponent } from './unlock/unlock.component';
 
 
 
@@ -31,7 +32,8 @@ import { FormsModule } from '@angular/forms';
     FooterComponent,
     LandingComponent,
     StartComponent,
-    PwResetWidgetComponent
+    PwResetWidgetComponent,
+    UnlockComponent
   ],
   imports: [
     BrowserModule,

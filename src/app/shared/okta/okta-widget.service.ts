@@ -40,40 +40,32 @@ export class OktaWidgetService {
     return authenticated;
   }
 
-  async pwResetWidget(redirecturi, strContext) {
+  async widgetDo(redirecturi, strContext, unlock, color) {
     const OktaClientID = this.OktaConfig.strClientID;
     const OktaBaseURI = this.OktaConfig.strBaseURI;
     const OktaLang = this.OktaConfig.strLang;
     const OktaRedirect = redirecturi;
-    const OktaBrand = this.OktaConfig.strBrand;
+    // const OktaBrand = this.OktaConfig.strBrand;
     const OktaIssuer = this.OktaConfig.strIssuer;
     const OktaScope = this.OktaConfig.strScope;
     var oktaSignIn = new OktaSignIn({
-      // flow: flow,
-
+      //  flow: flow,
       clientId: OktaClientID,
       baseUrl: OktaBaseURI,
       language: OktaLang,
       redirectUri: OktaRedirect,
       features: {
-        //router: true,
-        // showPasswordToggleOnSignInPage: false,
-        // hideSignOutLinkInMFA: true,
         rememberMe: false,
-        // registration: false,
-        // multiOptionalFactorEnroll: false,            // Allow users to enroll in multiple optional factors before finishing the authentication flow.
-        // selfServiceUnlock: true,                    // Will enable unlock in addition to forgotten password
-        // smsRecovery: false,                          // Enable SMS-based account recovery
-        // callRecovery: false,
+        selfServiceUnlock: unlock,
       },
       colors: {
-        brand: OktaBrand,
+        brand: color,
       },
       authParams: {
         issuer: OktaIssuer,
         scopes: OktaScope,
       },
-      // useInteractionCodeFlow: true,
+      //  useInteractionCodeFlow: true,
     });
     console.log(OktaScope);
     // *****************************************************************************
@@ -87,15 +79,24 @@ export class OktaWidgetService {
     // *****************************************************************************
     oktaSignIn.on('afterRender', function (context) {
       if (context.controller == strContext) {
-        let element: HTMLElement = document.getElementsByClassName('button-primary button-wide')[0] as HTMLElement;
+        let Element: HTMLElement = document.getElementsByClassName('button-primary button-wide')[0] as HTMLElement;
         document.getElementsByClassName('button-primary button-wide')[0].addEventListener('click', () => {
-          window.open('https://www.macnica.co.jp/', '_blank');
+          window.location.replace('https://www.macnica.co.jp/');
 
-          let widget: HTMLElement = document.getElementsByClassName('auth-container main-container no-beacon')[0] as HTMLElement;
-          widget.remove();
+        });
+        return;
+      }
+    })
 
-          //https://developer.mozilla.org/en-US/docs/Web/API/Window/close
-          //https://qiita.com/heppokofrontend/items/2aaf2c0ca1ce37aa4c45
+    // *****************************************************************************
+    // Unlock Reset -  change "Return to sign in button"    
+    // *****************************************************************************
+    oktaSignIn.on('afterRender', function (context) {
+      if (context.controller == strContext) {
+        let Element: HTMLElement = document.getElementsByClassName('button-primary button-wide')[0] as HTMLElement;
+        document.getElementsByClassName('button-primary button-wide')[0].addEventListener('click', () => {
+          window.location.replace('https://okta.com/jp/');
+
         });
         return;
       }
@@ -122,7 +123,7 @@ export class OktaWidgetService {
     const OktaBaseURI = this.OktaConfig.strBaseURI;
     const OktaLang = this.OktaConfig.strLang;
     const OktaRedirect = this.OktaConfig.strRedirectURL;
-    const OktaBrand = this.OktaConfig.strBrand;
+    // const OktaBrand = this.OktaConfig.strBrand;
     const OktaIssuer = this.OktaConfig.strIssuer;
     const OktaScope = this.OktaConfig.strScope;
     var oktaSignIn = new OktaSignIn({
@@ -131,7 +132,7 @@ export class OktaWidgetService {
       language: OktaLang,
       redirectUri: OktaRedirect,
       colors: {
-        brand: OktaBrand,
+        // brand: OktaBrand,
       },
       authParams: {
         issuer: OktaIssuer,
