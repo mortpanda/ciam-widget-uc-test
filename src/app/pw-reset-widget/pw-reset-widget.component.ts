@@ -27,4 +27,10 @@ export class PwResetWidgetComponent implements OnInit {
     
 
   }
+
+
+   GoToURL() {
+    console.log("Button was clicked, redirecting you");
+    window.location.replace('https://www.example.com');
+  }
 }

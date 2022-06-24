@@ -83,98 +83,24 @@ export class OktaWidgetService {
       console.log(context.controller);
     });
     // *****************************************************************************
-    //Password Reset change "Return to sign in button"    
+    // Password Reset -  change "Return to sign in button"    
     // *****************************************************************************
     oktaSignIn.on('afterRender', function (context) {
-      if (context.controller == 'password-reset-email-sent') {
-
-        // document.getElementById('okta-login-container').remove();
-        // let element: HTMLElement = document.getElementsByClassName('button button-primary button-wide link-button')[0] as HTMLElement;
-
-        // let element: HTMLElement = document.getElementsByClassName('button button-primary button-wide link-button')[0] as HTMLElement;
-
-
+      if (context.controller == strContext) {
         let element: HTMLElement = document.getElementsByClassName('button-primary button-wide')[0] as HTMLElement;
-        // element.remove();
-        // element.setAttribute('href',' ');
-        
-        element.setAttribute('target', '_blank');
-        element.setAttribute('onclick', 'GoToURL()');
-        // addElement()
+        document.getElementsByClassName('button-primary button-wide')[0].addEventListener('click', () => {
+          window.open('https://www.macnica.co.jp/', '_blank');
 
-        // function addElement() {
-          // var button = document.createElement('input');
-          // button.setAttribute('type', 'submit');
-          // button.setAttribute('ID', 'btnLink');
-          // button.setAttribute('value', 'Click me!');
-          // button.setAttribute('onclick', 'GoToURL()');
-          // button.setAttribute('form', 'myform');
-          // document.body.appendChild(button);
-          // button.setAttribute("class", "btn btn-primary");
-        // }
-            
-        
-        
+          let widget: HTMLElement = document.getElementsByClassName('auth-container main-container no-beacon')[0] as HTMLElement;
+          widget.remove();
 
-
+          //https://developer.mozilla.org/en-US/docs/Web/API/Window/close
+          //https://qiita.com/heppokofrontend/items/2aaf2c0ca1ce37aa4c45
+        });
         return;
-
       }
 
-
-
-      // addElement();
-
-      // function addElement() {
-      //   var button = document.createElement('input');
-      //   button.setAttribute('type', 'submit');
-      //   button.setAttribute('ID', 'btnLink');
-      //   button.setAttribute('value', 'Click me!');
-      //   button.setAttribute('onclick', 'GoToURL()');
-      //   button.setAttribute('form', 'myform');
-      //   document.body.appendChild(button);
-      //   button.setAttribute("class", "btn btn-primary");
-      // }
-      // function GoToURL() {
-      //   console.log("Button was clicked, redirecting you");
-      //   window.location.replace('https://www.example.com');
-      // }
-
-      // button.setAttribute('form', 'myform');
-      // document.body.appendChild(button);
-      // button.setAttribute("class", "btn btn-primary");
-
-
-      // var button = document.createElement('button');
-      // button.type = 'button';
-      // button.innerHTML = 'Press me';
-      // button.className = 'btn-styled';
-
-      //   var container = document.getElementById('okta-sign-in.auth-container.main-container');
-      // container.appendChild(button);
-
-      // return;
-
-
     })
-
-
-
-    // *****************************************************************************
-    // *****************************************************************************
-    // oktaSignIn.on('afterRender', function (context) {
-    //   // document.getElementById('okta-login-container').remove();
-    //   let element: HTMLElement = document.getElementsByClassName('js-go-back')[0] as HTMLElement;
-    //   element.remove();
-    //   var button = document.createElement('input');
-    //   button.setAttribute('type', 'submit');
-    //   button.setAttribute('ID', 'btnLink');
-    //   button.setAttribute('value', 'Click me!');  
-    //   button.setAttribute('onclick', 'GoToURL()');
-    //   button.setAttribute('form', 'myform');
-    //   document.body.appendChild(button);
-    //   button.setAttribute("class", "btn btn-primary");
-    // })
     await oktaSignIn.showSignInToGetTokens({
       el: '#okta-signin-container'
     }).then(function (tokens) {
@@ -216,9 +142,6 @@ export class OktaWidgetService {
     oktaSignIn.remove();
   }
 
-  GoToURL() {
-    console.log("Button was clicked, redirecting you");
-    window.location.replace('https://www.example.com');
-  }
+
 
 }
