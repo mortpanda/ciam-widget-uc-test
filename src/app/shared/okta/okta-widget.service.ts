@@ -115,7 +115,7 @@ export class OktaWidgetService {
       clientId: OktaClientID,
       baseUrl: OktaBaseURI,
       language: OktaLang,
-      redirectUri: OktaRedirect,
+      redirectUri: "https://www.macnica.co.jp/",
 
       features: {
         selfServiceUnlock: unlock,
@@ -169,7 +169,7 @@ export class OktaWidgetService {
   }
 
   //social
-  async widgetDoSocial(redirecturi, unlock, color) {
+  async widgetDoSocial(redirecturi, color) {
     const OktaClientID = this.OktaConfig.strClientID;
     const OktaBaseURI = this.OktaConfig.strBaseURI;
     const OktaLang = this.OktaConfig.strLang;
@@ -177,7 +177,6 @@ export class OktaWidgetService {
     const OktaIssuer = this.OktaConfig.strIssuer;
     const OktaScope = this.OktaConfig.strScope;
     var oktaSignIn = new OktaSignIn({
-      // flow: "login",
       clientId: OktaClientID,
       baseUrl: OktaBaseURI,
       language: OktaLang,
@@ -185,7 +184,6 @@ export class OktaWidgetService {
 
       features: {
         selfServiceUnlock: false,
-        rememberme:false,
       },
       colors: {
         brand: color,
@@ -196,7 +194,6 @@ export class OktaWidgetService {
       },
       idps:[
         { type: 'google', id: this.OktaConfig.strGoogleIdP },
-        
       ],
       useInteractionCodeFlow: true,
     });
@@ -207,22 +204,8 @@ export class OktaWidgetService {
       console.log(context.controller);
     });
     // // *****************************************************************************
-    // // Unlock  
+    // //   
     // // *****************************************************************************
-    oktaSignIn.on('afterRender', function (context) {
-      if (context.controller == "mfa-verify-passcode") {
-        let Element: HTMLElement = document.getElementsByClassName('button-link enter-auth-code-instead-link')[0] as HTMLElement;
-        Element.remove();
-
-        let backLink: HTMLElement = document.getElementsByClassName('link js-cancel')[0] as HTMLElement;
-        document.getElementsByClassName('link js-cancel')[0].innerHTML = "Go to customer URL";
-        document.getElementsByClassName('link js-cancel')[0].addEventListener('click', () => {
-          window.location.replace('https://www.yahoo.co.jp');
-
-        });
-        return;
-      }
-    })
     await oktaSignIn.showSignInToGetTokens({
       el: '#okta-signin-container'
     }).then(function (tokens) {
@@ -231,7 +214,7 @@ export class OktaWidgetService {
       const idToken = tokens.idToken;
       const strTokens = JSON.stringify(tokens)
       console.log("Hello, " + idToken.claims.email + "! You just logged in! :)");
-      window.location.replace(OktaRedirect);
+      window.location.replace('https://www.macnica.co.jp/');
       return true;
     }).catch(function (err) {
       console.error(err);

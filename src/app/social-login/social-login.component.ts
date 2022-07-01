@@ -22,7 +22,7 @@ export class SocialLoginComponent implements OnInit {
     await this.OktaWidgetService.CloseWidget();
     await this.OktaWidgetService.CloseWidget();
      
-    await this.OktaWidgetService.widgetDoSocial(this.OktaConfigService.strRedirectURL, true, "#095661");
+    await this.OktaWidgetService.widgetDoSocial(this.OktaConfigService.strSocialRedirect, "#095661");
 
 
   }
