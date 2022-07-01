@@ -31,7 +31,15 @@ export class MenuListService {
       // style: 'font-size: 2rem;',
       routerLink: '/unlock'
     },
-    
+    {
+      tooltipOptions: {
+        tooltipLabel: "Social",
+        tooltipPosition: "top",
+      },
+      icon: "pi pi-google",
+      // style: 'font-size: 2rem;',
+      routerLink: '/social'
+    },
   ];
 
 

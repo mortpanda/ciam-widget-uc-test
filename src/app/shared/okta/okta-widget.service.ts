@@ -168,6 +168,76 @@ export class OktaWidgetService {
     });
   }
 
+  //social
+  async widgetDoSocial(redirecturi, unlock, color) {
+    const OktaClientID = this.OktaConfig.strClientID;
+    const OktaBaseURI = this.OktaConfig.strBaseURI;
+    const OktaLang = this.OktaConfig.strLang;
+    const OktaRedirect = redirecturi;
+    const OktaIssuer = this.OktaConfig.strIssuer;
+    const OktaScope = this.OktaConfig.strScope;
+    var oktaSignIn = new OktaSignIn({
+      // flow: "login",
+      clientId: OktaClientID,
+      baseUrl: OktaBaseURI,
+      language: OktaLang,
+      redirectUri: OktaRedirect,
+
+      features: {
+        selfServiceUnlock: false,
+        rememberme:false,
+      },
+      colors: {
+        brand: color,
+      },
+      authParams: {
+        issuer: OktaIssuer,
+        scopes: OktaScope,
+      },
+      idps:[
+        { type: 'google', id: this.OktaConfig.strGoogleIdP },
+        
+      ],
+      useInteractionCodeFlow: true,
+    });
+    // // *****************************************************************************
+    // // This will display the context in the console.
+    // // *****************************************************************************
+    await oktaSignIn.on('afterRender', function (context, error) {
+      console.log(context.controller);
+    });
+    // // *****************************************************************************
+    // // Unlock  
+    // // *****************************************************************************
+    oktaSignIn.on('afterRender', function (context) {
+      if (context.controller == "mfa-verify-passcode") {
+        let Element: HTMLElement = document.getElementsByClassName('button-link enter-auth-code-instead-link')[0] as HTMLElement;
+        Element.remove();
+
+        let backLink: HTMLElement = document.getElementsByClassName('link js-cancel')[0] as HTMLElement;
+        document.getElementsByClassName('link js-cancel')[0].innerHTML = "Go to customer URL";
+        document.getElementsByClassName('link js-cancel')[0].addEventListener('click', () => {
+          window.location.replace('https://www.yahoo.co.jp');
+
+        });
+        return;
+      }
+    })
+    await oktaSignIn.showSignInToGetTokens({
+      el: '#okta-signin-container'
+    }).then(function (tokens) {
+      oktaSignIn.authClient.tokenManager.setTokens(tokens);
+      oktaSignIn.remove();
+      const idToken = tokens.idToken;
+      const strTokens = JSON.stringify(tokens)
+      console.log("Hello, " + idToken.claims.email + "! You just logged in! :)");
+      window.location.replace(OktaRedirect);
+      return true;
+    }).catch(function (err) {
+      console.error(err);
+      return false;
+    });
+  }
 
 
   CloseWidget() {
