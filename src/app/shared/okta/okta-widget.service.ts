@@ -102,7 +102,7 @@ export class OktaWidgetService {
     });
   }
 
-//unlockAccount
+  //unlockAccount
   async widgetDoUnlock(redirecturi, unlock, color) {
     const OktaClientID = this.OktaConfig.strClientID;
     const OktaBaseURI = this.OktaConfig.strBaseURI;
@@ -136,7 +136,7 @@ export class OktaWidgetService {
       console.log(context.controller);
     });
     // // *****************************************************************************
-    // // Unlock
+    // // Unlock  
     // // *****************************************************************************
     oktaSignIn.on('afterRender', function (context) {
       if (context.controller == "mfa-verify-passcode") {
@@ -168,7 +168,7 @@ export class OktaWidgetService {
     });
   }
 
-   
+
 
   CloseWidget() {
     const OktaClientID = this.OktaConfig.strClientID;
@@ -195,6 +195,8 @@ export class OktaWidgetService {
     oktaSignIn.remove();
   }
 
+
+ 
 
 
 }
